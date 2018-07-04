@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ABRIRLLAVES ABRIRPARENTESIS BOOLEANO CERRARLLAVES CERRARPARENTESIS COMA COMILLAS DIVIDIR DOSPUNTOS EXCLAMACION IGUAL LAMBDA MAS MAYORQUE MENORQUE MENOS NUMERO OPERADORLOGICO POR PUNTOYCOMA STRING VARIABLEassignVariable : VARIABLE IGUAL expr\n                    | VARIABLE IGUAL COMILLAS STRING COMILLAS\n                    | VARIABLE IGUAL lambdacondicion : IGUAL IGUAL\n                | EXCLAMACION IGUAL\n                | MAYORQUE IGUAL\n                | MENORQUE IGUAL\n                | MAYORQUE\n                | MENORQUEevaluarCondicion : expr condicion expr\n                        | BOOLEANO\n                        | evaluarCondicion OPERADORLOGICO evaluarCondicionexpr : expr MAS term\n            | ABRIRPARENTESIS expr MAS term CERRARPARENTESIS\n            | expr MENOS term\n            | ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS\n            | termterm : term POR term\n            | term DIVIDIR term\n            | ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS\n            | ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS\n            | NUMERO\n            | VARIABLE\n            | ABRIRPARENTESIS term POR term CERRARPARENTESIS\n            | ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESISparametros : parametros COMA VARIABLE\n                | VARIABLE\n                | parametros COMA assignVariable\n                | assignVariable\n                | lambda : LAMBDA parametros DOSPUNTOS expr'
+_lr_signature = 'ABRIRLLAVES ABRIRPARENTESIS BOOLEANO CERRARLLAVES CERRARPARENTESIS COMA COMILLAS DIVIDIR DOSPUNTOS EXCLAMACION IGUAL LAMBDA MAS MAYORQUE MENORQUE MENOS NUMERO OPERADORLOGICO POR PUNTOYCOMA STRING VARIABLEassignVariable : VARIABLE IGUAL expr\n                    | VARIABLE IGUAL STRING\n                    | VARIABLE IGUAL lambdacondicion : IGUAL IGUAL\n                | EXCLAMACION IGUAL\n                | MAYORQUE IGUAL\n                | MENORQUE IGUAL\n                | MAYORQUE\n                | MENORQUEevaluarCondicion : expr condicion expr\n                        | BOOLEANO\n                        | evaluarCondicion OPERADORLOGICO evaluarCondicionexpr : expr MAS term\n            | ABRIRPARENTESIS expr MAS term CERRARPARENTESIS\n            | expr MENOS term\n            | ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS\n            | termterm : term POR term\n            | term DIVIDIR term\n            | ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS\n            | ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS\n            | NUMERO\n            | VARIABLE\n            | ABRIRPARENTESIS term POR term CERRARPARENTESIS\n            | ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESISparametros : parametros COMA VARIABLE\n                | VARIABLE\n                | parametros COMA assignVariable\n                | assignVariable\n                | lambda : LAMBDA parametros DOSPUNTOS expr'
     
-_lr_action_items = {'VARIABLE':([0,3,9,10,12,13,15,16,23,28,29,30,31,32,33,],[2,4,4,20,4,4,4,4,4,4,4,4,4,4,42,]),'$end':([1,4,5,7,8,11,22,24,25,26,27,41,44,45,46,47,48,49,],[0,-23,-1,-3,-17,-22,-13,-15,-2,-18,-19,-31,-14,-16,-24,-20,-25,-21,]),'IGUAL':([2,20,42,],[3,3,3,]),'COMILLAS':([3,14,],[6,25,]),'ABRIRPARENTESIS':([3,9,12,13,15,16,23,28,29,30,31,32,],[9,9,23,23,23,23,23,23,23,23,23,9,]),'LAMBDA':([3,],[10,]),'NUMERO':([3,9,12,13,15,16,23,28,29,30,31,32,],[11,11,11,11,11,11,11,11,11,38,40,11,]),'POR':([4,8,11,18,22,24,26,27,34,35,36,37,38,39,40,46,47,48,49,],[-23,15,-22,30,15,15,15,15,30,15,15,15,-22,15,-22,-24,-20,-25,-21,]),'DIVIDIR':([4,8,11,18,22,24,26,27,34,35,36,37,38,39,40,46,47,48,49,],[-23,16,-22,31,16,16,16,16,31,16,16,16,-22,16,-22,-24,-20,-25,-21,]),'MAS':([4,5,8,11,17,18,22,24,26,27,35,36,37,38,39,40,41,44,45,46,47,48,49,],[-23,12,-17,-22,28,-17,-13,-15,-18,-19,-13,-15,-18,-22,-19,-22,12,-14,-16,-24,-20,-25,-21,]),'MENOS':([4,5,8,11,17,18,22,24,26,27,35,36,37,38,39,40,41,44,45,46,47,48,49,],[-23,13,-17,-22,29,-17,-13,-15,-18,-19,-13,-15,-18,-22,-19,-22,13,-14,-16,-24,-20,-25,-21,]),'DOSPUNTOS':([4,5,7,8,10,11,19,20,21,22,24,25,26,27,41,42,43,44,45,46,47,48,49,],[-23,-1,-3,-17,-30,-22,32,-27,-29,-13,-15,-2,-18,-19,-31,-26,-28,-14,-16,-24,-20,-25,-21,]),'COMA':([4,5,7,8,10,11,19,20,21,22,24,25,26,27,41,42,43,44,45,46,47,48,49,],[-23,-1,-3,-17,-30,-22,33,-27,-29,-13,-15,-2,-18,-19,-31,-26,-28,-14,-16,-24,-20,-25,-21,]),'CERRARPARENTESIS':([4,11,26,27,35,36,37,38,39,40,46,47,48,49,],[-23,-22,-18,-19,44,45,46,47,48,49,-24,-20,-25,-21,]),'STRING':([6,],[14,]),}
+_lr_action_items = {'VARIABLE':([0,3,9,10,12,13,14,15,22,26,27,28,29,30,31,],[2,4,4,19,4,4,4,4,4,4,4,4,4,4,40,]),'$end':([1,4,5,6,7,8,11,21,23,24,25,39,42,43,44,45,46,47,],[0,-23,-1,-2,-3,-17,-22,-13,-15,-18,-19,-31,-14,-16,-24,-20,-25,-21,]),'IGUAL':([2,19,40,],[3,3,3,]),'STRING':([3,],[6,]),'ABRIRPARENTESIS':([3,9,12,13,14,15,22,26,27,28,29,30,],[9,9,22,22,22,22,22,22,22,22,22,9,]),'LAMBDA':([3,],[10,]),'NUMERO':([3,9,12,13,14,15,22,26,27,28,29,30,],[11,11,11,11,11,11,11,11,11,36,38,11,]),'POR':([4,8,11,17,21,23,24,25,32,33,34,35,36,37,38,44,45,46,47,],[-23,14,-22,28,14,14,14,14,28,14,14,14,-22,14,-22,-24,-20,-25,-21,]),'DIVIDIR':([4,8,11,17,21,23,24,25,32,33,34,35,36,37,38,44,45,46,47,],[-23,15,-22,29,15,15,15,15,29,15,15,15,-22,15,-22,-24,-20,-25,-21,]),'MAS':([4,5,8,11,16,17,21,23,24,25,33,34,35,36,37,38,39,42,43,44,45,46,47,],[-23,12,-17,-22,26,-17,-13,-15,-18,-19,-13,-15,-18,-22,-19,-22,12,-14,-16,-24,-20,-25,-21,]),'MENOS':([4,5,8,11,16,17,21,23,24,25,33,34,35,36,37,38,39,42,43,44,45,46,47,],[-23,13,-17,-22,27,-17,-13,-15,-18,-19,-13,-15,-18,-22,-19,-22,13,-14,-16,-24,-20,-25,-21,]),'DOSPUNTOS':([4,5,6,7,8,10,11,18,19,20,21,23,24,25,39,40,41,42,43,44,45,46,47,],[-23,-1,-2,-3,-17,-30,-22,30,-27,-29,-13,-15,-18,-19,-31,-26,-28,-14,-16,-24,-20,-25,-21,]),'COMA':([4,5,6,7,8,10,11,18,19,20,21,23,24,25,39,40,41,42,43,44,45,46,47,],[-23,-1,-2,-3,-17,-30,-22,31,-27,-29,-13,-15,-18,-19,-31,-26,-28,-14,-16,-24,-20,-25,-21,]),'CERRARPARENTESIS':([4,11,24,25,33,34,35,36,37,38,44,45,46,47,],[-23,-22,-18,-19,42,43,44,45,46,47,-24,-20,-25,-21,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'assignVariable':([0,10,33,],[1,21,43,]),'expr':([3,9,32,],[5,17,41,]),'lambda':([3,],[7,]),'term':([3,9,12,13,15,16,23,28,29,30,31,32,],[8,18,22,24,26,27,34,35,36,37,39,8,]),'parametros':([10,],[19,]),}
+_lr_goto_items = {'assignVariable':([0,10,31,],[1,20,41,]),'expr':([3,9,30,],[5,16,39,]),'lambda':([3,],[7,]),'term':([3,9,12,13,14,15,22,26,27,28,29,30,],[8,17,21,23,24,25,32,33,34,35,37,8,]),'parametros':([10,],[18,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -28,34 +28,34 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> assignVariable","S'",1,None,None,None),
   ('assignVariable -> VARIABLE IGUAL expr','assignVariable',3,'p_assignVariable','Parser.py',6),
-  ('assignVariable -> VARIABLE IGUAL COMILLAS STRING COMILLAS','assignVariable',5,'p_assignVariable','Parser.py',7),
+  ('assignVariable -> VARIABLE IGUAL STRING','assignVariable',3,'p_assignVariable','Parser.py',7),
   ('assignVariable -> VARIABLE IGUAL lambda','assignVariable',3,'p_assignVariable','Parser.py',8),
-  ('condicion -> IGUAL IGUAL','condicion',2,'p_condicion','Parser.py',11),
-  ('condicion -> EXCLAMACION IGUAL','condicion',2,'p_condicion','Parser.py',12),
-  ('condicion -> MAYORQUE IGUAL','condicion',2,'p_condicion','Parser.py',13),
-  ('condicion -> MENORQUE IGUAL','condicion',2,'p_condicion','Parser.py',14),
-  ('condicion -> MAYORQUE','condicion',1,'p_condicion','Parser.py',15),
-  ('condicion -> MENORQUE','condicion',1,'p_condicion','Parser.py',16),
-  ('evaluarCondicion -> expr condicion expr','evaluarCondicion',3,'p_evaluarCondicion','Parser.py',19),
-  ('evaluarCondicion -> BOOLEANO','evaluarCondicion',1,'p_evaluarCondicion','Parser.py',20),
-  ('evaluarCondicion -> evaluarCondicion OPERADORLOGICO evaluarCondicion','evaluarCondicion',3,'p_evaluarCondicion','Parser.py',21),
-  ('expr -> expr MAS term','expr',3,'p_expr','Parser.py',24),
-  ('expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS','expr',5,'p_expr','Parser.py',25),
-  ('expr -> expr MENOS term','expr',3,'p_expr','Parser.py',26),
-  ('expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS','expr',5,'p_expr','Parser.py',27),
-  ('expr -> term','expr',1,'p_expr','Parser.py',28),
-  ('term -> term POR term','term',3,'p_term','Parser.py',31),
-  ('term -> term DIVIDIR term','term',3,'p_term','Parser.py',32),
-  ('term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS','term',5,'p_term','Parser.py',33),
-  ('term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS','term',5,'p_term','Parser.py',34),
-  ('term -> NUMERO','term',1,'p_term','Parser.py',35),
-  ('term -> VARIABLE','term',1,'p_term','Parser.py',36),
-  ('term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS','term',5,'p_term','Parser.py',37),
-  ('term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS','term',5,'p_term','Parser.py',38),
-  ('parametros -> parametros COMA VARIABLE','parametros',3,'p_parametros','Parser.py',41),
-  ('parametros -> VARIABLE','parametros',1,'p_parametros','Parser.py',42),
-  ('parametros -> parametros COMA assignVariable','parametros',3,'p_parametros','Parser.py',43),
-  ('parametros -> assignVariable','parametros',1,'p_parametros','Parser.py',44),
-  ('parametros -> <empty>','parametros',0,'p_parametros','Parser.py',45),
-  ('lambda -> LAMBDA parametros DOSPUNTOS expr','lambda',4,'p_lambda','Parser.py',48),
+  ('condicion -> IGUAL IGUAL','condicion',2,'p_condicion','Parser.py',14),
+  ('condicion -> EXCLAMACION IGUAL','condicion',2,'p_condicion','Parser.py',15),
+  ('condicion -> MAYORQUE IGUAL','condicion',2,'p_condicion','Parser.py',16),
+  ('condicion -> MENORQUE IGUAL','condicion',2,'p_condicion','Parser.py',17),
+  ('condicion -> MAYORQUE','condicion',1,'p_condicion','Parser.py',18),
+  ('condicion -> MENORQUE','condicion',1,'p_condicion','Parser.py',19),
+  ('evaluarCondicion -> expr condicion expr','evaluarCondicion',3,'p_evaluarCondicion','Parser.py',22),
+  ('evaluarCondicion -> BOOLEANO','evaluarCondicion',1,'p_evaluarCondicion','Parser.py',23),
+  ('evaluarCondicion -> evaluarCondicion OPERADORLOGICO evaluarCondicion','evaluarCondicion',3,'p_evaluarCondicion','Parser.py',24),
+  ('expr -> expr MAS term','expr',3,'p_expr','Parser.py',27),
+  ('expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS','expr',5,'p_expr','Parser.py',28),
+  ('expr -> expr MENOS term','expr',3,'p_expr','Parser.py',29),
+  ('expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS','expr',5,'p_expr','Parser.py',30),
+  ('expr -> term','expr',1,'p_expr','Parser.py',31),
+  ('term -> term POR term','term',3,'p_term','Parser.py',34),
+  ('term -> term DIVIDIR term','term',3,'p_term','Parser.py',35),
+  ('term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS','term',5,'p_term','Parser.py',36),
+  ('term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS','term',5,'p_term','Parser.py',37),
+  ('term -> NUMERO','term',1,'p_term','Parser.py',38),
+  ('term -> VARIABLE','term',1,'p_term','Parser.py',39),
+  ('term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS','term',5,'p_term','Parser.py',40),
+  ('term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS','term',5,'p_term','Parser.py',41),
+  ('parametros -> parametros COMA VARIABLE','parametros',3,'p_parametros','Parser.py',44),
+  ('parametros -> VARIABLE','parametros',1,'p_parametros','Parser.py',45),
+  ('parametros -> parametros COMA assignVariable','parametros',3,'p_parametros','Parser.py',46),
+  ('parametros -> assignVariable','parametros',1,'p_parametros','Parser.py',47),
+  ('parametros -> <empty>','parametros',0,'p_parametros','Parser.py',48),
+  ('lambda -> LAMBDA parametros DOSPUNTOS expr','lambda',4,'p_lambda','Parser.py',51),
 ]

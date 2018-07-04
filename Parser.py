@@ -4,7 +4,7 @@ tokens = MiTokens.tokens
 
 def p_assignVariable(p):
     '''assignVariable : VARIABLE IGUAL expr
-                    | VARIABLE IGUAL COMILLAS STRING COMILLAS
+                    | VARIABLE IGUAL STRING
                     | VARIABLE IGUAL lambda'''
 
 def p_error(subexpr):

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8779b094-4189-4fdf-8953-8649b1428896" name="Default" comment="" />
+    <list default="true" id="8779b094-4189-4fdf-8953-8649b1428896" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MiTokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/MiTokens.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parser.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser.out" beforeDir="false" afterPath="$PROJECT_DIR$/parser.out" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parsetab.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsetab.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +20,8 @@
       <file leaf-file-name="MiTokens.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MiTokens.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
+            <state relative-caret-position="228">
+              <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -23,8 +29,8 @@
       <file leaf-file-name="Parser.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+            <state relative-caret-position="663">
+              <caret line="39" column="41" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -41,6 +47,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -56,6 +65,7 @@
     <option name="width" value="908" />
     <option name="height" value="788" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -91,7 +101,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.MiTokens">
+  <component name="RunManager" selected="Python.Parser">
     <configuration name="MiTokens" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ProyectoLP" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -153,8 +163,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.MiTokens" />
         <item itemvalue="Python.Parser" />
+        <item itemvalue="Python.MiTokens" />
         <item itemvalue="Python.mitokens" />
       </list>
     </recent_temporary>
@@ -166,10 +176,10 @@
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14598025" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14598025" />
+      <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3294423" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3294423" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -186,14 +196,14 @@
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="0" weight="0.14598025" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14598025" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="8" />
       <window_info active="true" anchor="bottom" id="Run" order="4" visible="true" weight="0.3294423" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Find" order="3" />
       <window_info anchor="bottom" id="Python Console" order="1" />
     </layout-to-restore>
@@ -226,13 +236,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MiTokens.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="33" column="26" selection-start-line="33" selection-start-column="26" selection-end-line="33" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../LPavance2/parser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="601">
@@ -246,10 +249,17 @@
     <entry file="file://$PROJECT_DIR$/parsetab.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/MiTokens.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
+        <state relative-caret-position="663">
+          <caret line="39" column="41" selection-start-line="39" selection-start-column="41" selection-end-line="39" selection-end-column="41" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>

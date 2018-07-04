@@ -13,7 +13,7 @@ def t_NUMERO(t):
     r'\d+'
     t.value = int(t.value)
     return t
-t_STRING = r'[a-zA-Z]+'
+t_STRING = r'".+"'
 t_VARIABLE = r'[a-zA-Z][a-zA-Z0-9_]*'
 
 t_MAS = r'\+'
@@ -50,7 +50,7 @@ def t_error(token):
     print(message)
 
 lex.lex()
-x= "b = lambda x: (x * 5)"
+x= "b = lambda x,y=\"5aas\": (x * 5)"
 lex.input(x)
 while True:
     tok = lex.token()
