@@ -2,10 +2,10 @@ import ply.lex as lex
 
 tokens = ['VARIABLE','NUMERO','STRING',
           'MAS','MENOS','POR','DIVIDIR','IGUAL',
-          'ABRIRPARENTESIS','CERRARPARENTESIS','ABRIRLLAVES','CERRARLLAVES','COMILLAS',
+          'ABRIRPARENTESIS','CERRARPARENTESIS','ABRIRLLAVES','CERRARLLAVES','COMILLAS','ABRIRCORCHETE','CERRARCORCHETE',
           'MAYORQUE','MENORQUE','EXCLAMACION','OPERADORLOGICO','BOOLEANO',
           'PUNTOYCOMA','COMA','DOSPUNTOS',
-          'LAMBDA']
+          'LAMBDA','FILTER']
 
 t_ignore = ' \t'
 
@@ -27,6 +27,9 @@ t_CERRARPARENTESIS = r'\)'
 t_ABRIRLLAVES = r'\{'
 t_CERRARLLAVES = r'\}'
 t_COMILLAS = r'"'
+t_ABRIRCORCHETE = r'\['
+t_CERRARCORCHETE = r'\]'
+
 
 t_MAYORQUE = r'>'
 t_MENORQUE = r'<'
@@ -40,6 +43,7 @@ t_COMA = r','
 t_DOSPUNTOS = r':'
 
 t_LAMBDA = r'lambda'
+t_FILTER = r'FILTER'
 
 def t_error(token):
     print("Token desconocido: \n")

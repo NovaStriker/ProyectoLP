@@ -5,7 +5,20 @@ tokens = MiTokens.tokens
 def p_assignVariable(p):
     '''assignVariable : VARIABLE IGUAL expr
                     | VARIABLE IGUAL STRING
-                    | VARIABLE IGUAL lambda'''
+                    | VARIABLE IGUAL lambda
+                    | VARIABLE IGUAL filter
+                    | VARIABLE IGUAL lista'''
+def p_lista(p):
+    '''lista : ABRIRCORCHETE lisString CERRARCORCHETE
+            | ABRIRCORCHETE lisInt CERRARCORCHETE'''
+
+def p_lisString(p):
+    '''lisString : lisString COMA STRING
+                | STRING'''
+
+def p_lisInt(p):
+    '''lisInt : lisInt COMA NUMERO
+                | NUMERO'''
 
 def p_error(subexpr):
     raise Exception("Syntax error.")
@@ -49,6 +62,10 @@ def p_parametros(p):
 
 def p_lambda(p):
     '''lambda : LAMBDA parametros DOSPUNTOS expr'''
+
+def p_filter(p):
+    '''filter : FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS
+            | FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS'''
 
 
 yacc.yacc()
