@@ -4,8 +4,8 @@ Unused terminals:
 
     ABRIRLLAVES
     CERRARLLAVES
-    COMILLAS
     PUNTOYCOMA
+    STR
 
 Grammar
 
@@ -29,71 +29,90 @@ Rule 16    condicion -> MAYORQUE
 Rule 17    condicion -> MENORQUE
 Rule 18    evaluarCondicion -> expr condicion expr
 Rule 19    evaluarCondicion -> BOOLEANO
-Rule 20    evaluarCondicion -> evaluarCondicion OPERADORLOGICO evaluarCondicion
-Rule 21    expr -> expr MAS term
-Rule 22    expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS
-Rule 23    expr -> expr MENOS term
-Rule 24    expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS
-Rule 25    expr -> term
-Rule 26    term -> term POR term
-Rule 27    term -> term DIVIDIR term
-Rule 28    term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
-Rule 29    term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
-Rule 30    term -> NUMERO
-Rule 31    term -> VARIABLE
-Rule 32    term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS
-Rule 33    term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
-Rule 34    parametros -> parametros COMA VARIABLE
-Rule 35    parametros -> VARIABLE
-Rule 36    parametros -> parametros COMA assignVariable
-Rule 37    parametros -> assignVariable
-Rule 38    parametros -> <empty>
-Rule 39    lambda -> LAMBDA parametros DOSPUNTOS expr
-Rule 40    filter -> FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS
-Rule 41    filter -> FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS
+Rule 20    evaluarCondicion -> expr IGUAL IGUAL BOOLEANO
+Rule 21    evaluarCondicion -> expr EXCLAMACION IGUAL BOOLEANO
+Rule 22    evaluarCondicion -> evaluarCondicion OPERADORLOGICO evaluarCondicion
+Rule 23    expr -> expr MAS term
+Rule 24    expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS
+Rule 25    expr -> expr MENOS term
+Rule 26    expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS
+Rule 27    expr -> term
+Rule 28    term -> term POR term
+Rule 29    term -> term DIVIDIR term
+Rule 30    term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+Rule 31    term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+Rule 32    term -> NUMERO
+Rule 33    term -> VARIABLE
+Rule 34    term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS
+Rule 35    term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+Rule 36    parametros -> parametros COMA VARIABLE
+Rule 37    parametros -> VARIABLE
+Rule 38    parametros -> parametros COMA assignVariable
+Rule 39    parametros -> assignVariable
+Rule 40    parametros -> <empty>
+Rule 41    cualquierCosa -> STRING
+Rule 42    cualquierCosa -> NUMERO
+Rule 43    cualquierCosa -> VARIABLE
+Rule 44    lambda -> LAMBDA parametros DOSPUNTOS expr
+Rule 45    lambda -> LAMBDA parametros DOSPUNTOS evaluarCondicion
+Rule 46    lambda -> LAMBDA parametros DOSPUNTOS INT IF evaluarCondicion ELSE cualquierCosa
+Rule 47    filter -> FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS
+Rule 48    filter -> FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS
+Rule 49    reduce -> REDUCE ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS
+Rule 50    reduce -> REDUCE ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS
+Rule 51    mapa -> MAPA ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS
+Rule 52    mapa -> MAPA ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS
 
 Terminals, with rules where they appear
 
 ABRIRCORCHETE        : 6 7
 ABRIRLLAVES          : 
-ABRIRPARENTESIS      : 22 24 28 29 32 33 40 41
-BOOLEANO             : 19
+ABRIRPARENTESIS      : 24 26 30 31 34 35 47 48 49 50 51 52
+BOOLEANO             : 19 20 21
 CERRARCORCHETE       : 6 7
 CERRARLLAVES         : 
-CERRARPARENTESIS     : 22 24 28 29 32 33 40 41
-COMA                 : 8 10 34 36 40 41
-COMILLAS             : 
-DIVIDIR              : 27 29 33
-DOSPUNTOS            : 39
-EXCLAMACION          : 13
-FILTER               : 40 41
-IGUAL                : 1 2 3 4 5 12 12 13 14 15
-LAMBDA               : 39
-MAS                  : 21 22
+CERRARPARENTESIS     : 24 26 30 31 34 35 47 48 49 50 51 52
+COMA                 : 8 10 36 38 47 48 49 50 51 52
+DIVIDIR              : 29 31 35
+DOSPUNTOS            : 44 45 46
+ELSE                 : 46
+EXCLAMACION          : 13 21
+FILTER               : 47 48
+IF                   : 46
+IGUAL                : 1 2 3 4 5 12 12 13 14 15 20 20 21
+INT                  : 46
+LAMBDA               : 44 45 46
+MAPA                 : 51 52
+MAS                  : 23 24
 MAYORQUE             : 14 16
 MENORQUE             : 15 17
-MENOS                : 23 24
-NUMERO               : 10 11 28 29 30
-OPERADORLOGICO       : 20
-POR                  : 26 28 32
+MENOS                : 25 26
+NUMERO               : 10 11 30 31 32 42
+OPERADORLOGICO       : 22
+POR                  : 28 30 34
 PUNTOYCOMA           : 
-STRING               : 2 8 9
-VARIABLE             : 1 2 3 4 5 31 34 35 40
+REDUCE               : 49 50
+STR                  : 
+STRING               : 2 8 9 41
+VARIABLE             : 1 2 3 4 5 33 36 37 43 47 49 51
 error                : 
 
 Nonterminals, with rules where they appear
 
-assignVariable       : 36 37 0
+assignVariable       : 38 39 0
 condicion            : 18
-evaluarCondicion     : 20 20
-expr                 : 1 18 18 21 22 23 24 39
+cualquierCosa        : 46
+evaluarCondicion     : 22 22 45 46
+expr                 : 1 18 18 20 21 23 24 25 26 44
 filter               : 4
-lambda               : 3 40 41
+lambda               : 3 47 48 49 50 51 52
 lisInt               : 7 10
 lisString            : 6 8
-lista                : 5 41
-parametros           : 34 36 39
-term                 : 21 22 23 24 25 26 26 27 27 28 29 32 32 33 33
+lista                : 5 48 50 52
+mapa                 : 
+parametros           : 36 38 44 45 46
+reduce               : 
+term                 : 23 24 25 26 27 28 28 29 29 30 31 34 34 35 35
 
 Parsing method: LALR
 
@@ -134,24 +153,26 @@ state 3
     (3) assignVariable -> VARIABLE IGUAL . lambda
     (4) assignVariable -> VARIABLE IGUAL . filter
     (5) assignVariable -> VARIABLE IGUAL . lista
-    (21) expr -> . expr MAS term
-    (22) expr -> . ABRIRPARENTESIS expr MAS term CERRARPARENTESIS
-    (23) expr -> . expr MENOS term
-    (24) expr -> . ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS
-    (25) expr -> . term
-    (39) lambda -> . LAMBDA parametros DOSPUNTOS expr
-    (40) filter -> . FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS
-    (41) filter -> . FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS
+    (23) expr -> . expr MAS term
+    (24) expr -> . ABRIRPARENTESIS expr MAS term CERRARPARENTESIS
+    (25) expr -> . expr MENOS term
+    (26) expr -> . ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS
+    (27) expr -> . term
+    (44) lambda -> . LAMBDA parametros DOSPUNTOS expr
+    (45) lambda -> . LAMBDA parametros DOSPUNTOS evaluarCondicion
+    (46) lambda -> . LAMBDA parametros DOSPUNTOS INT IF evaluarCondicion ELSE cualquierCosa
+    (47) filter -> . FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS
+    (48) filter -> . FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS
     (6) lista -> . ABRIRCORCHETE lisString CERRARCORCHETE
     (7) lista -> . ABRIRCORCHETE lisInt CERRARCORCHETE
-    (26) term -> . term POR term
-    (27) term -> . term DIVIDIR term
-    (28) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
-    (29) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
-    (30) term -> . NUMERO
-    (31) term -> . VARIABLE
-    (32) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
-    (33) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
 
     STRING          shift and go to state 6
     ABRIRPARENTESIS shift and go to state 11
@@ -169,23 +190,29 @@ state 3
 
 state 4
 
-    (31) term -> VARIABLE .
+    (33) term -> VARIABLE .
 
-    POR             reduce using rule 31 (term -> VARIABLE .)
-    DIVIDIR         reduce using rule 31 (term -> VARIABLE .)
-    MAS             reduce using rule 31 (term -> VARIABLE .)
-    MENOS           reduce using rule 31 (term -> VARIABLE .)
-    $end            reduce using rule 31 (term -> VARIABLE .)
-    DOSPUNTOS       reduce using rule 31 (term -> VARIABLE .)
-    COMA            reduce using rule 31 (term -> VARIABLE .)
-    CERRARPARENTESIS reduce using rule 31 (term -> VARIABLE .)
+    POR             reduce using rule 33 (term -> VARIABLE .)
+    DIVIDIR         reduce using rule 33 (term -> VARIABLE .)
+    MAS             reduce using rule 33 (term -> VARIABLE .)
+    MENOS           reduce using rule 33 (term -> VARIABLE .)
+    $end            reduce using rule 33 (term -> VARIABLE .)
+    DOSPUNTOS       reduce using rule 33 (term -> VARIABLE .)
+    COMA            reduce using rule 33 (term -> VARIABLE .)
+    IGUAL           reduce using rule 33 (term -> VARIABLE .)
+    EXCLAMACION     reduce using rule 33 (term -> VARIABLE .)
+    MAYORQUE        reduce using rule 33 (term -> VARIABLE .)
+    MENORQUE        reduce using rule 33 (term -> VARIABLE .)
+    OPERADORLOGICO  reduce using rule 33 (term -> VARIABLE .)
+    ELSE            reduce using rule 33 (term -> VARIABLE .)
+    CERRARPARENTESIS reduce using rule 33 (term -> VARIABLE .)
 
 
 state 5
 
     (1) assignVariable -> VARIABLE IGUAL expr .
-    (21) expr -> expr . MAS term
-    (23) expr -> expr . MENOS term
+    (23) expr -> expr . MAS term
+    (25) expr -> expr . MENOS term
 
     $end            reduce using rule 1 (assignVariable -> VARIABLE IGUAL expr .)
     DOSPUNTOS       reduce using rule 1 (assignVariable -> VARIABLE IGUAL expr .)
@@ -232,40 +259,46 @@ state 9
 
 state 10
 
-    (25) expr -> term .
-    (26) term -> term . POR term
-    (27) term -> term . DIVIDIR term
+    (27) expr -> term .
+    (28) term -> term . POR term
+    (29) term -> term . DIVIDIR term
 
-    MAS             reduce using rule 25 (expr -> term .)
-    MENOS           reduce using rule 25 (expr -> term .)
-    $end            reduce using rule 25 (expr -> term .)
-    DOSPUNTOS       reduce using rule 25 (expr -> term .)
-    COMA            reduce using rule 25 (expr -> term .)
+    MAS             reduce using rule 27 (expr -> term .)
+    MENOS           reduce using rule 27 (expr -> term .)
+    $end            reduce using rule 27 (expr -> term .)
+    DOSPUNTOS       reduce using rule 27 (expr -> term .)
+    COMA            reduce using rule 27 (expr -> term .)
+    IGUAL           reduce using rule 27 (expr -> term .)
+    EXCLAMACION     reduce using rule 27 (expr -> term .)
+    MAYORQUE        reduce using rule 27 (expr -> term .)
+    MENORQUE        reduce using rule 27 (expr -> term .)
+    OPERADORLOGICO  reduce using rule 27 (expr -> term .)
+    ELSE            reduce using rule 27 (expr -> term .)
     POR             shift and go to state 18
     DIVIDIR         shift and go to state 19
 
 
 state 11
 
-    (22) expr -> ABRIRPARENTESIS . expr MAS term CERRARPARENTESIS
-    (24) expr -> ABRIRPARENTESIS . expr MENOS term CERRARPARENTESIS
-    (28) term -> ABRIRPARENTESIS . term POR NUMERO CERRARPARENTESIS
-    (29) term -> ABRIRPARENTESIS . term DIVIDIR NUMERO CERRARPARENTESIS
-    (32) term -> ABRIRPARENTESIS . term POR term CERRARPARENTESIS
-    (33) term -> ABRIRPARENTESIS . term DIVIDIR term CERRARPARENTESIS
-    (21) expr -> . expr MAS term
-    (22) expr -> . ABRIRPARENTESIS expr MAS term CERRARPARENTESIS
-    (23) expr -> . expr MENOS term
-    (24) expr -> . ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS
-    (25) expr -> . term
-    (26) term -> . term POR term
-    (27) term -> . term DIVIDIR term
-    (28) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
-    (29) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
-    (30) term -> . NUMERO
-    (31) term -> . VARIABLE
-    (32) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
-    (33) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+    (24) expr -> ABRIRPARENTESIS . expr MAS term CERRARPARENTESIS
+    (26) expr -> ABRIRPARENTESIS . expr MENOS term CERRARPARENTESIS
+    (30) term -> ABRIRPARENTESIS . term POR NUMERO CERRARPARENTESIS
+    (31) term -> ABRIRPARENTESIS . term DIVIDIR NUMERO CERRARPARENTESIS
+    (34) term -> ABRIRPARENTESIS . term POR term CERRARPARENTESIS
+    (35) term -> ABRIRPARENTESIS . term DIVIDIR term CERRARPARENTESIS
+    (23) expr -> . expr MAS term
+    (24) expr -> . ABRIRPARENTESIS expr MAS term CERRARPARENTESIS
+    (25) expr -> . expr MENOS term
+    (26) expr -> . ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS
+    (27) expr -> . term
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
 
     ABRIRPARENTESIS shift and go to state 11
     NUMERO          shift and go to state 15
@@ -276,12 +309,14 @@ state 11
 
 state 12
 
-    (39) lambda -> LAMBDA . parametros DOSPUNTOS expr
-    (34) parametros -> . parametros COMA VARIABLE
-    (35) parametros -> . VARIABLE
-    (36) parametros -> . parametros COMA assignVariable
-    (37) parametros -> . assignVariable
-    (38) parametros -> .
+    (44) lambda -> LAMBDA . parametros DOSPUNTOS expr
+    (45) lambda -> LAMBDA . parametros DOSPUNTOS evaluarCondicion
+    (46) lambda -> LAMBDA . parametros DOSPUNTOS INT IF evaluarCondicion ELSE cualquierCosa
+    (36) parametros -> . parametros COMA VARIABLE
+    (37) parametros -> . VARIABLE
+    (38) parametros -> . parametros COMA assignVariable
+    (39) parametros -> . assignVariable
+    (40) parametros -> .
     (1) assignVariable -> . VARIABLE IGUAL expr
     (2) assignVariable -> . VARIABLE IGUAL STRING
     (3) assignVariable -> . VARIABLE IGUAL lambda
@@ -289,16 +324,16 @@ state 12
     (5) assignVariable -> . VARIABLE IGUAL lista
 
     VARIABLE        shift and go to state 23
-    DOSPUNTOS       reduce using rule 38 (parametros -> .)
-    COMA            reduce using rule 38 (parametros -> .)
+    DOSPUNTOS       reduce using rule 40 (parametros -> .)
+    COMA            reduce using rule 40 (parametros -> .)
 
     parametros                     shift and go to state 22
     assignVariable                 shift and go to state 24
 
 state 13
 
-    (40) filter -> FILTER . ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS
-    (41) filter -> FILTER . ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS
+    (47) filter -> FILTER . ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS
+    (48) filter -> FILTER . ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS
 
     ABRIRPARENTESIS shift and go to state 25
 
@@ -320,29 +355,35 @@ state 14
 
 state 15
 
-    (30) term -> NUMERO .
+    (32) term -> NUMERO .
 
-    POR             reduce using rule 30 (term -> NUMERO .)
-    DIVIDIR         reduce using rule 30 (term -> NUMERO .)
-    MAS             reduce using rule 30 (term -> NUMERO .)
-    MENOS           reduce using rule 30 (term -> NUMERO .)
-    $end            reduce using rule 30 (term -> NUMERO .)
-    DOSPUNTOS       reduce using rule 30 (term -> NUMERO .)
-    COMA            reduce using rule 30 (term -> NUMERO .)
-    CERRARPARENTESIS reduce using rule 30 (term -> NUMERO .)
+    POR             reduce using rule 32 (term -> NUMERO .)
+    DIVIDIR         reduce using rule 32 (term -> NUMERO .)
+    MAS             reduce using rule 32 (term -> NUMERO .)
+    MENOS           reduce using rule 32 (term -> NUMERO .)
+    $end            reduce using rule 32 (term -> NUMERO .)
+    DOSPUNTOS       reduce using rule 32 (term -> NUMERO .)
+    COMA            reduce using rule 32 (term -> NUMERO .)
+    IGUAL           reduce using rule 32 (term -> NUMERO .)
+    EXCLAMACION     reduce using rule 32 (term -> NUMERO .)
+    MAYORQUE        reduce using rule 32 (term -> NUMERO .)
+    MENORQUE        reduce using rule 32 (term -> NUMERO .)
+    OPERADORLOGICO  reduce using rule 32 (term -> NUMERO .)
+    ELSE            reduce using rule 32 (term -> NUMERO .)
+    CERRARPARENTESIS reduce using rule 32 (term -> NUMERO .)
 
 
 state 16
 
-    (21) expr -> expr MAS . term
-    (26) term -> . term POR term
-    (27) term -> . term DIVIDIR term
-    (28) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
-    (29) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
-    (30) term -> . NUMERO
-    (31) term -> . VARIABLE
-    (32) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
-    (33) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+    (23) expr -> expr MAS . term
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
 
     ABRIRPARENTESIS shift and go to state 31
     NUMERO          shift and go to state 15
@@ -352,15 +393,15 @@ state 16
 
 state 17
 
-    (23) expr -> expr MENOS . term
-    (26) term -> . term POR term
-    (27) term -> . term DIVIDIR term
-    (28) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
-    (29) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
-    (30) term -> . NUMERO
-    (31) term -> . VARIABLE
-    (32) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
-    (33) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+    (25) expr -> expr MENOS . term
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
 
     ABRIRPARENTESIS shift and go to state 31
     NUMERO          shift and go to state 15
@@ -370,15 +411,15 @@ state 17
 
 state 18
 
-    (26) term -> term POR . term
-    (26) term -> . term POR term
-    (27) term -> . term DIVIDIR term
-    (28) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
-    (29) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
-    (30) term -> . NUMERO
-    (31) term -> . VARIABLE
-    (32) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
-    (33) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+    (28) term -> term POR . term
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
 
     ABRIRPARENTESIS shift and go to state 31
     NUMERO          shift and go to state 15
@@ -388,15 +429,15 @@ state 18
 
 state 19
 
-    (27) term -> term DIVIDIR . term
-    (26) term -> . term POR term
-    (27) term -> . term DIVIDIR term
-    (28) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
-    (29) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
-    (30) term -> . NUMERO
-    (31) term -> . VARIABLE
-    (32) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
-    (33) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+    (29) term -> term DIVIDIR . term
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
 
     ABRIRPARENTESIS shift and go to state 31
     NUMERO          shift and go to state 15
@@ -406,10 +447,10 @@ state 19
 
 state 20
 
-    (22) expr -> ABRIRPARENTESIS expr . MAS term CERRARPARENTESIS
-    (24) expr -> ABRIRPARENTESIS expr . MENOS term CERRARPARENTESIS
-    (21) expr -> expr . MAS term
-    (23) expr -> expr . MENOS term
+    (24) expr -> ABRIRPARENTESIS expr . MAS term CERRARPARENTESIS
+    (26) expr -> ABRIRPARENTESIS expr . MENOS term CERRARPARENTESIS
+    (23) expr -> expr . MAS term
+    (25) expr -> expr . MENOS term
 
     MAS             shift and go to state 35
     MENOS           shift and go to state 36
@@ -417,25 +458,27 @@ state 20
 
 state 21
 
-    (28) term -> ABRIRPARENTESIS term . POR NUMERO CERRARPARENTESIS
-    (29) term -> ABRIRPARENTESIS term . DIVIDIR NUMERO CERRARPARENTESIS
-    (32) term -> ABRIRPARENTESIS term . POR term CERRARPARENTESIS
-    (33) term -> ABRIRPARENTESIS term . DIVIDIR term CERRARPARENTESIS
-    (25) expr -> term .
-    (26) term -> term . POR term
-    (27) term -> term . DIVIDIR term
+    (30) term -> ABRIRPARENTESIS term . POR NUMERO CERRARPARENTESIS
+    (31) term -> ABRIRPARENTESIS term . DIVIDIR NUMERO CERRARPARENTESIS
+    (34) term -> ABRIRPARENTESIS term . POR term CERRARPARENTESIS
+    (35) term -> ABRIRPARENTESIS term . DIVIDIR term CERRARPARENTESIS
+    (27) expr -> term .
+    (28) term -> term . POR term
+    (29) term -> term . DIVIDIR term
 
     POR             shift and go to state 37
     DIVIDIR         shift and go to state 38
-    MAS             reduce using rule 25 (expr -> term .)
-    MENOS           reduce using rule 25 (expr -> term .)
+    MAS             reduce using rule 27 (expr -> term .)
+    MENOS           reduce using rule 27 (expr -> term .)
 
 
 state 22
 
-    (39) lambda -> LAMBDA parametros . DOSPUNTOS expr
-    (34) parametros -> parametros . COMA VARIABLE
-    (36) parametros -> parametros . COMA assignVariable
+    (44) lambda -> LAMBDA parametros . DOSPUNTOS expr
+    (45) lambda -> LAMBDA parametros . DOSPUNTOS evaluarCondicion
+    (46) lambda -> LAMBDA parametros . DOSPUNTOS INT IF evaluarCondicion ELSE cualquierCosa
+    (36) parametros -> parametros . COMA VARIABLE
+    (38) parametros -> parametros . COMA assignVariable
 
     DOSPUNTOS       shift and go to state 39
     COMA            shift and go to state 40
@@ -443,31 +486,33 @@ state 22
 
 state 23
 
-    (35) parametros -> VARIABLE .
+    (37) parametros -> VARIABLE .
     (1) assignVariable -> VARIABLE . IGUAL expr
     (2) assignVariable -> VARIABLE . IGUAL STRING
     (3) assignVariable -> VARIABLE . IGUAL lambda
     (4) assignVariable -> VARIABLE . IGUAL filter
     (5) assignVariable -> VARIABLE . IGUAL lista
 
-    DOSPUNTOS       reduce using rule 35 (parametros -> VARIABLE .)
-    COMA            reduce using rule 35 (parametros -> VARIABLE .)
+    DOSPUNTOS       reduce using rule 37 (parametros -> VARIABLE .)
+    COMA            reduce using rule 37 (parametros -> VARIABLE .)
     IGUAL           shift and go to state 3
 
 
 state 24
 
-    (37) parametros -> assignVariable .
+    (39) parametros -> assignVariable .
 
-    DOSPUNTOS       reduce using rule 37 (parametros -> assignVariable .)
-    COMA            reduce using rule 37 (parametros -> assignVariable .)
+    DOSPUNTOS       reduce using rule 39 (parametros -> assignVariable .)
+    COMA            reduce using rule 39 (parametros -> assignVariable .)
 
 
 state 25
 
-    (40) filter -> FILTER ABRIRPARENTESIS . lambda COMA VARIABLE CERRARPARENTESIS
-    (41) filter -> FILTER ABRIRPARENTESIS . lambda COMA lista CERRARPARENTESIS
-    (39) lambda -> . LAMBDA parametros DOSPUNTOS expr
+    (47) filter -> FILTER ABRIRPARENTESIS . lambda COMA VARIABLE CERRARPARENTESIS
+    (48) filter -> FILTER ABRIRPARENTESIS . lambda COMA lista CERRARPARENTESIS
+    (44) lambda -> . LAMBDA parametros DOSPUNTOS expr
+    (45) lambda -> . LAMBDA parametros DOSPUNTOS evaluarCondicion
+    (46) lambda -> . LAMBDA parametros DOSPUNTOS INT IF evaluarCondicion ELSE cualquierCosa
 
     LAMBDA          shift and go to state 12
 
@@ -509,33 +554,39 @@ state 29
 
 state 30
 
-    (21) expr -> expr MAS term .
-    (26) term -> term . POR term
-    (27) term -> term . DIVIDIR term
+    (23) expr -> expr MAS term .
+    (28) term -> term . POR term
+    (29) term -> term . DIVIDIR term
 
-    MAS             reduce using rule 21 (expr -> expr MAS term .)
-    MENOS           reduce using rule 21 (expr -> expr MAS term .)
-    $end            reduce using rule 21 (expr -> expr MAS term .)
-    DOSPUNTOS       reduce using rule 21 (expr -> expr MAS term .)
-    COMA            reduce using rule 21 (expr -> expr MAS term .)
+    MAS             reduce using rule 23 (expr -> expr MAS term .)
+    MENOS           reduce using rule 23 (expr -> expr MAS term .)
+    $end            reduce using rule 23 (expr -> expr MAS term .)
+    DOSPUNTOS       reduce using rule 23 (expr -> expr MAS term .)
+    COMA            reduce using rule 23 (expr -> expr MAS term .)
+    IGUAL           reduce using rule 23 (expr -> expr MAS term .)
+    EXCLAMACION     reduce using rule 23 (expr -> expr MAS term .)
+    MAYORQUE        reduce using rule 23 (expr -> expr MAS term .)
+    MENORQUE        reduce using rule 23 (expr -> expr MAS term .)
+    OPERADORLOGICO  reduce using rule 23 (expr -> expr MAS term .)
+    ELSE            reduce using rule 23 (expr -> expr MAS term .)
     POR             shift and go to state 18
     DIVIDIR         shift and go to state 19
 
 
 state 31
 
-    (28) term -> ABRIRPARENTESIS . term POR NUMERO CERRARPARENTESIS
-    (29) term -> ABRIRPARENTESIS . term DIVIDIR NUMERO CERRARPARENTESIS
-    (32) term -> ABRIRPARENTESIS . term POR term CERRARPARENTESIS
-    (33) term -> ABRIRPARENTESIS . term DIVIDIR term CERRARPARENTESIS
-    (26) term -> . term POR term
-    (27) term -> . term DIVIDIR term
-    (28) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
-    (29) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
-    (30) term -> . NUMERO
-    (31) term -> . VARIABLE
-    (32) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
-    (33) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+    (30) term -> ABRIRPARENTESIS . term POR NUMERO CERRARPARENTESIS
+    (31) term -> ABRIRPARENTESIS . term DIVIDIR NUMERO CERRARPARENTESIS
+    (34) term -> ABRIRPARENTESIS . term POR term CERRARPARENTESIS
+    (35) term -> ABRIRPARENTESIS . term DIVIDIR term CERRARPARENTESIS
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
 
     ABRIRPARENTESIS shift and go to state 31
     NUMERO          shift and go to state 15
@@ -545,73 +596,91 @@ state 31
 
 state 32
 
-    (23) expr -> expr MENOS term .
-    (26) term -> term . POR term
-    (27) term -> term . DIVIDIR term
+    (25) expr -> expr MENOS term .
+    (28) term -> term . POR term
+    (29) term -> term . DIVIDIR term
 
-    MAS             reduce using rule 23 (expr -> expr MENOS term .)
-    MENOS           reduce using rule 23 (expr -> expr MENOS term .)
-    $end            reduce using rule 23 (expr -> expr MENOS term .)
-    DOSPUNTOS       reduce using rule 23 (expr -> expr MENOS term .)
-    COMA            reduce using rule 23 (expr -> expr MENOS term .)
+    MAS             reduce using rule 25 (expr -> expr MENOS term .)
+    MENOS           reduce using rule 25 (expr -> expr MENOS term .)
+    $end            reduce using rule 25 (expr -> expr MENOS term .)
+    DOSPUNTOS       reduce using rule 25 (expr -> expr MENOS term .)
+    COMA            reduce using rule 25 (expr -> expr MENOS term .)
+    IGUAL           reduce using rule 25 (expr -> expr MENOS term .)
+    EXCLAMACION     reduce using rule 25 (expr -> expr MENOS term .)
+    MAYORQUE        reduce using rule 25 (expr -> expr MENOS term .)
+    MENORQUE        reduce using rule 25 (expr -> expr MENOS term .)
+    OPERADORLOGICO  reduce using rule 25 (expr -> expr MENOS term .)
+    ELSE            reduce using rule 25 (expr -> expr MENOS term .)
     POR             shift and go to state 18
     DIVIDIR         shift and go to state 19
 
 
 state 33
 
-    (26) term -> term POR term .
-    (26) term -> term . POR term
-    (27) term -> term . DIVIDIR term
+    (28) term -> term POR term .
+    (28) term -> term . POR term
+    (29) term -> term . DIVIDIR term
 
   ! shift/reduce conflict for POR resolved as shift
   ! shift/reduce conflict for DIVIDIR resolved as shift
-    MAS             reduce using rule 26 (term -> term POR term .)
-    MENOS           reduce using rule 26 (term -> term POR term .)
-    $end            reduce using rule 26 (term -> term POR term .)
-    DOSPUNTOS       reduce using rule 26 (term -> term POR term .)
-    COMA            reduce using rule 26 (term -> term POR term .)
-    CERRARPARENTESIS reduce using rule 26 (term -> term POR term .)
+    MAS             reduce using rule 28 (term -> term POR term .)
+    MENOS           reduce using rule 28 (term -> term POR term .)
+    $end            reduce using rule 28 (term -> term POR term .)
+    DOSPUNTOS       reduce using rule 28 (term -> term POR term .)
+    COMA            reduce using rule 28 (term -> term POR term .)
+    IGUAL           reduce using rule 28 (term -> term POR term .)
+    EXCLAMACION     reduce using rule 28 (term -> term POR term .)
+    MAYORQUE        reduce using rule 28 (term -> term POR term .)
+    MENORQUE        reduce using rule 28 (term -> term POR term .)
+    OPERADORLOGICO  reduce using rule 28 (term -> term POR term .)
+    ELSE            reduce using rule 28 (term -> term POR term .)
+    CERRARPARENTESIS reduce using rule 28 (term -> term POR term .)
     POR             shift and go to state 18
     DIVIDIR         shift and go to state 19
 
-  ! POR             [ reduce using rule 26 (term -> term POR term .) ]
-  ! DIVIDIR         [ reduce using rule 26 (term -> term POR term .) ]
+  ! POR             [ reduce using rule 28 (term -> term POR term .) ]
+  ! DIVIDIR         [ reduce using rule 28 (term -> term POR term .) ]
 
 
 state 34
 
-    (27) term -> term DIVIDIR term .
-    (26) term -> term . POR term
-    (27) term -> term . DIVIDIR term
+    (29) term -> term DIVIDIR term .
+    (28) term -> term . POR term
+    (29) term -> term . DIVIDIR term
 
   ! shift/reduce conflict for POR resolved as shift
   ! shift/reduce conflict for DIVIDIR resolved as shift
-    MAS             reduce using rule 27 (term -> term DIVIDIR term .)
-    MENOS           reduce using rule 27 (term -> term DIVIDIR term .)
-    $end            reduce using rule 27 (term -> term DIVIDIR term .)
-    DOSPUNTOS       reduce using rule 27 (term -> term DIVIDIR term .)
-    COMA            reduce using rule 27 (term -> term DIVIDIR term .)
-    CERRARPARENTESIS reduce using rule 27 (term -> term DIVIDIR term .)
+    MAS             reduce using rule 29 (term -> term DIVIDIR term .)
+    MENOS           reduce using rule 29 (term -> term DIVIDIR term .)
+    $end            reduce using rule 29 (term -> term DIVIDIR term .)
+    DOSPUNTOS       reduce using rule 29 (term -> term DIVIDIR term .)
+    COMA            reduce using rule 29 (term -> term DIVIDIR term .)
+    IGUAL           reduce using rule 29 (term -> term DIVIDIR term .)
+    EXCLAMACION     reduce using rule 29 (term -> term DIVIDIR term .)
+    MAYORQUE        reduce using rule 29 (term -> term DIVIDIR term .)
+    MENORQUE        reduce using rule 29 (term -> term DIVIDIR term .)
+    OPERADORLOGICO  reduce using rule 29 (term -> term DIVIDIR term .)
+    ELSE            reduce using rule 29 (term -> term DIVIDIR term .)
+    CERRARPARENTESIS reduce using rule 29 (term -> term DIVIDIR term .)
     POR             shift and go to state 18
     DIVIDIR         shift and go to state 19
 
-  ! POR             [ reduce using rule 27 (term -> term DIVIDIR term .) ]
-  ! DIVIDIR         [ reduce using rule 27 (term -> term DIVIDIR term .) ]
+  ! POR             [ reduce using rule 29 (term -> term DIVIDIR term .) ]
+  ! DIVIDIR         [ reduce using rule 29 (term -> term DIVIDIR term .) ]
 
 
 state 35
 
-    (22) expr -> ABRIRPARENTESIS expr MAS . term CERRARPARENTESIS
-    (21) expr -> expr MAS . term
-    (26) term -> . term POR term
-    (27) term -> . term DIVIDIR term
-    (28) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
-    (29) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
-    (30) term -> . NUMERO
-    (31) term -> . VARIABLE
-    (32) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
-    (33) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+    (24) expr -> ABRIRPARENTESIS expr MAS . term CERRARPARENTESIS
+    (23) expr -> expr MAS . term
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
 
     ABRIRPARENTESIS shift and go to state 31
     NUMERO          shift and go to state 15
@@ -621,16 +690,16 @@ state 35
 
 state 36
 
-    (24) expr -> ABRIRPARENTESIS expr MENOS . term CERRARPARENTESIS
-    (23) expr -> expr MENOS . term
-    (26) term -> . term POR term
-    (27) term -> . term DIVIDIR term
-    (28) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
-    (29) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
-    (30) term -> . NUMERO
-    (31) term -> . VARIABLE
-    (32) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
-    (33) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+    (26) expr -> ABRIRPARENTESIS expr MENOS . term CERRARPARENTESIS
+    (25) expr -> expr MENOS . term
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
 
     ABRIRPARENTESIS shift and go to state 31
     NUMERO          shift and go to state 15
@@ -640,17 +709,17 @@ state 36
 
 state 37
 
-    (28) term -> ABRIRPARENTESIS term POR . NUMERO CERRARPARENTESIS
-    (32) term -> ABRIRPARENTESIS term POR . term CERRARPARENTESIS
-    (26) term -> term POR . term
-    (26) term -> . term POR term
-    (27) term -> . term DIVIDIR term
-    (28) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
-    (29) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
-    (30) term -> . NUMERO
-    (31) term -> . VARIABLE
-    (32) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
-    (33) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+    (30) term -> ABRIRPARENTESIS term POR . NUMERO CERRARPARENTESIS
+    (34) term -> ABRIRPARENTESIS term POR . term CERRARPARENTESIS
+    (28) term -> term POR . term
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
 
     NUMERO          shift and go to state 50
     ABRIRPARENTESIS shift and go to state 31
@@ -660,17 +729,17 @@ state 37
 
 state 38
 
-    (29) term -> ABRIRPARENTESIS term DIVIDIR . NUMERO CERRARPARENTESIS
-    (33) term -> ABRIRPARENTESIS term DIVIDIR . term CERRARPARENTESIS
-    (27) term -> term DIVIDIR . term
-    (26) term -> . term POR term
-    (27) term -> . term DIVIDIR term
-    (28) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
-    (29) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
-    (30) term -> . NUMERO
-    (31) term -> . VARIABLE
-    (32) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
-    (33) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+    (31) term -> ABRIRPARENTESIS term DIVIDIR . NUMERO CERRARPARENTESIS
+    (35) term -> ABRIRPARENTESIS term DIVIDIR . term CERRARPARENTESIS
+    (29) term -> term DIVIDIR . term
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
 
     NUMERO          shift and go to state 52
     ABRIRPARENTESIS shift and go to state 31
@@ -680,48 +749,58 @@ state 38
 
 state 39
 
-    (39) lambda -> LAMBDA parametros DOSPUNTOS . expr
-    (21) expr -> . expr MAS term
-    (22) expr -> . ABRIRPARENTESIS expr MAS term CERRARPARENTESIS
-    (23) expr -> . expr MENOS term
-    (24) expr -> . ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS
-    (25) expr -> . term
-    (26) term -> . term POR term
-    (27) term -> . term DIVIDIR term
-    (28) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
-    (29) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
-    (30) term -> . NUMERO
-    (31) term -> . VARIABLE
-    (32) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
-    (33) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+    (44) lambda -> LAMBDA parametros DOSPUNTOS . expr
+    (45) lambda -> LAMBDA parametros DOSPUNTOS . evaluarCondicion
+    (46) lambda -> LAMBDA parametros DOSPUNTOS . INT IF evaluarCondicion ELSE cualquierCosa
+    (23) expr -> . expr MAS term
+    (24) expr -> . ABRIRPARENTESIS expr MAS term CERRARPARENTESIS
+    (25) expr -> . expr MENOS term
+    (26) expr -> . ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS
+    (27) expr -> . term
+    (18) evaluarCondicion -> . expr condicion expr
+    (19) evaluarCondicion -> . BOOLEANO
+    (20) evaluarCondicion -> . expr IGUAL IGUAL BOOLEANO
+    (21) evaluarCondicion -> . expr EXCLAMACION IGUAL BOOLEANO
+    (22) evaluarCondicion -> . evaluarCondicion OPERADORLOGICO evaluarCondicion
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
 
+    INT             shift and go to state 55
     ABRIRPARENTESIS shift and go to state 11
+    BOOLEANO        shift and go to state 56
     NUMERO          shift and go to state 15
     VARIABLE        shift and go to state 4
 
     expr                           shift and go to state 53
+    evaluarCondicion               shift and go to state 54
     term                           shift and go to state 10
 
 state 40
 
-    (34) parametros -> parametros COMA . VARIABLE
-    (36) parametros -> parametros COMA . assignVariable
+    (36) parametros -> parametros COMA . VARIABLE
+    (38) parametros -> parametros COMA . assignVariable
     (1) assignVariable -> . VARIABLE IGUAL expr
     (2) assignVariable -> . VARIABLE IGUAL STRING
     (3) assignVariable -> . VARIABLE IGUAL lambda
     (4) assignVariable -> . VARIABLE IGUAL filter
     (5) assignVariable -> . VARIABLE IGUAL lista
 
-    VARIABLE        shift and go to state 54
+    VARIABLE        shift and go to state 57
 
-    assignVariable                 shift and go to state 55
+    assignVariable                 shift and go to state 58
 
 state 41
 
-    (40) filter -> FILTER ABRIRPARENTESIS lambda . COMA VARIABLE CERRARPARENTESIS
-    (41) filter -> FILTER ABRIRPARENTESIS lambda . COMA lista CERRARPARENTESIS
+    (47) filter -> FILTER ABRIRPARENTESIS lambda . COMA VARIABLE CERRARPARENTESIS
+    (48) filter -> FILTER ABRIRPARENTESIS lambda . COMA lista CERRARPARENTESIS
 
-    COMA            shift and go to state 56
+    COMA            shift and go to state 59
 
 
 state 42
@@ -738,7 +817,7 @@ state 43
 
     (8) lisString -> lisString COMA . STRING
 
-    STRING          shift and go to state 57
+    STRING          shift and go to state 60
 
 
 state 44
@@ -755,17 +834,17 @@ state 45
 
     (10) lisInt -> lisInt COMA . NUMERO
 
-    NUMERO          shift and go to state 58
+    NUMERO          shift and go to state 61
 
 
 state 46
 
-    (28) term -> ABRIRPARENTESIS term . POR NUMERO CERRARPARENTESIS
-    (29) term -> ABRIRPARENTESIS term . DIVIDIR NUMERO CERRARPARENTESIS
-    (32) term -> ABRIRPARENTESIS term . POR term CERRARPARENTESIS
-    (33) term -> ABRIRPARENTESIS term . DIVIDIR term CERRARPARENTESIS
-    (26) term -> term . POR term
-    (27) term -> term . DIVIDIR term
+    (30) term -> ABRIRPARENTESIS term . POR NUMERO CERRARPARENTESIS
+    (31) term -> ABRIRPARENTESIS term . DIVIDIR NUMERO CERRARPARENTESIS
+    (34) term -> ABRIRPARENTESIS term . POR term CERRARPARENTESIS
+    (35) term -> ABRIRPARENTESIS term . DIVIDIR term CERRARPARENTESIS
+    (28) term -> term . POR term
+    (29) term -> term . DIVIDIR term
 
     POR             shift and go to state 37
     DIVIDIR         shift and go to state 38
@@ -773,148 +852,191 @@ state 46
 
 state 47
 
-    (22) expr -> ABRIRPARENTESIS expr MAS term . CERRARPARENTESIS
-    (21) expr -> expr MAS term .
-    (26) term -> term . POR term
-    (27) term -> term . DIVIDIR term
+    (24) expr -> ABRIRPARENTESIS expr MAS term . CERRARPARENTESIS
+    (23) expr -> expr MAS term .
+    (28) term -> term . POR term
+    (29) term -> term . DIVIDIR term
 
-    CERRARPARENTESIS shift and go to state 59
-    MAS             reduce using rule 21 (expr -> expr MAS term .)
-    MENOS           reduce using rule 21 (expr -> expr MAS term .)
+    CERRARPARENTESIS shift and go to state 62
+    MAS             reduce using rule 23 (expr -> expr MAS term .)
+    MENOS           reduce using rule 23 (expr -> expr MAS term .)
     POR             shift and go to state 18
     DIVIDIR         shift and go to state 19
 
 
 state 48
 
-    (24) expr -> ABRIRPARENTESIS expr MENOS term . CERRARPARENTESIS
-    (23) expr -> expr MENOS term .
-    (26) term -> term . POR term
-    (27) term -> term . DIVIDIR term
+    (26) expr -> ABRIRPARENTESIS expr MENOS term . CERRARPARENTESIS
+    (25) expr -> expr MENOS term .
+    (28) term -> term . POR term
+    (29) term -> term . DIVIDIR term
 
-    CERRARPARENTESIS shift and go to state 60
-    MAS             reduce using rule 23 (expr -> expr MENOS term .)
-    MENOS           reduce using rule 23 (expr -> expr MENOS term .)
+    CERRARPARENTESIS shift and go to state 63
+    MAS             reduce using rule 25 (expr -> expr MENOS term .)
+    MENOS           reduce using rule 25 (expr -> expr MENOS term .)
     POR             shift and go to state 18
     DIVIDIR         shift and go to state 19
 
 
 state 49
 
-    (32) term -> ABRIRPARENTESIS term POR term . CERRARPARENTESIS
-    (26) term -> term POR term .
-    (26) term -> term . POR term
-    (27) term -> term . DIVIDIR term
+    (34) term -> ABRIRPARENTESIS term POR term . CERRARPARENTESIS
+    (28) term -> term POR term .
+    (28) term -> term . POR term
+    (29) term -> term . DIVIDIR term
 
   ! shift/reduce conflict for POR resolved as shift
   ! shift/reduce conflict for DIVIDIR resolved as shift
-    CERRARPARENTESIS shift and go to state 61
-    MAS             reduce using rule 26 (term -> term POR term .)
-    MENOS           reduce using rule 26 (term -> term POR term .)
+    CERRARPARENTESIS shift and go to state 64
+    MAS             reduce using rule 28 (term -> term POR term .)
+    MENOS           reduce using rule 28 (term -> term POR term .)
     POR             shift and go to state 18
     DIVIDIR         shift and go to state 19
 
-  ! POR             [ reduce using rule 26 (term -> term POR term .) ]
-  ! DIVIDIR         [ reduce using rule 26 (term -> term POR term .) ]
+  ! POR             [ reduce using rule 28 (term -> term POR term .) ]
+  ! DIVIDIR         [ reduce using rule 28 (term -> term POR term .) ]
 
 
 state 50
 
-    (28) term -> ABRIRPARENTESIS term POR NUMERO . CERRARPARENTESIS
-    (30) term -> NUMERO .
+    (30) term -> ABRIRPARENTESIS term POR NUMERO . CERRARPARENTESIS
+    (32) term -> NUMERO .
 
   ! shift/reduce conflict for CERRARPARENTESIS resolved as shift
-    CERRARPARENTESIS shift and go to state 62
-    POR             reduce using rule 30 (term -> NUMERO .)
-    DIVIDIR         reduce using rule 30 (term -> NUMERO .)
-    MAS             reduce using rule 30 (term -> NUMERO .)
-    MENOS           reduce using rule 30 (term -> NUMERO .)
+    CERRARPARENTESIS shift and go to state 65
+    POR             reduce using rule 32 (term -> NUMERO .)
+    DIVIDIR         reduce using rule 32 (term -> NUMERO .)
+    MAS             reduce using rule 32 (term -> NUMERO .)
+    MENOS           reduce using rule 32 (term -> NUMERO .)
 
-  ! CERRARPARENTESIS [ reduce using rule 30 (term -> NUMERO .) ]
+  ! CERRARPARENTESIS [ reduce using rule 32 (term -> NUMERO .) ]
 
 
 state 51
 
-    (33) term -> ABRIRPARENTESIS term DIVIDIR term . CERRARPARENTESIS
-    (27) term -> term DIVIDIR term .
-    (26) term -> term . POR term
-    (27) term -> term . DIVIDIR term
+    (35) term -> ABRIRPARENTESIS term DIVIDIR term . CERRARPARENTESIS
+    (29) term -> term DIVIDIR term .
+    (28) term -> term . POR term
+    (29) term -> term . DIVIDIR term
 
   ! shift/reduce conflict for POR resolved as shift
   ! shift/reduce conflict for DIVIDIR resolved as shift
-    CERRARPARENTESIS shift and go to state 63
-    MAS             reduce using rule 27 (term -> term DIVIDIR term .)
-    MENOS           reduce using rule 27 (term -> term DIVIDIR term .)
+    CERRARPARENTESIS shift and go to state 66
+    MAS             reduce using rule 29 (term -> term DIVIDIR term .)
+    MENOS           reduce using rule 29 (term -> term DIVIDIR term .)
     POR             shift and go to state 18
     DIVIDIR         shift and go to state 19
 
-  ! POR             [ reduce using rule 27 (term -> term DIVIDIR term .) ]
-  ! DIVIDIR         [ reduce using rule 27 (term -> term DIVIDIR term .) ]
+  ! POR             [ reduce using rule 29 (term -> term DIVIDIR term .) ]
+  ! DIVIDIR         [ reduce using rule 29 (term -> term DIVIDIR term .) ]
 
 
 state 52
 
-    (29) term -> ABRIRPARENTESIS term DIVIDIR NUMERO . CERRARPARENTESIS
-    (30) term -> NUMERO .
+    (31) term -> ABRIRPARENTESIS term DIVIDIR NUMERO . CERRARPARENTESIS
+    (32) term -> NUMERO .
 
   ! shift/reduce conflict for CERRARPARENTESIS resolved as shift
-    CERRARPARENTESIS shift and go to state 64
-    POR             reduce using rule 30 (term -> NUMERO .)
-    DIVIDIR         reduce using rule 30 (term -> NUMERO .)
-    MAS             reduce using rule 30 (term -> NUMERO .)
-    MENOS           reduce using rule 30 (term -> NUMERO .)
+    CERRARPARENTESIS shift and go to state 67
+    POR             reduce using rule 32 (term -> NUMERO .)
+    DIVIDIR         reduce using rule 32 (term -> NUMERO .)
+    MAS             reduce using rule 32 (term -> NUMERO .)
+    MENOS           reduce using rule 32 (term -> NUMERO .)
 
-  ! CERRARPARENTESIS [ reduce using rule 30 (term -> NUMERO .) ]
+  ! CERRARPARENTESIS [ reduce using rule 32 (term -> NUMERO .) ]
 
 
 state 53
 
-    (39) lambda -> LAMBDA parametros DOSPUNTOS expr .
-    (21) expr -> expr . MAS term
-    (23) expr -> expr . MENOS term
+    (44) lambda -> LAMBDA parametros DOSPUNTOS expr .
+    (23) expr -> expr . MAS term
+    (25) expr -> expr . MENOS term
+    (18) evaluarCondicion -> expr . condicion expr
+    (20) evaluarCondicion -> expr . IGUAL IGUAL BOOLEANO
+    (21) evaluarCondicion -> expr . EXCLAMACION IGUAL BOOLEANO
+    (12) condicion -> . IGUAL IGUAL
+    (13) condicion -> . EXCLAMACION IGUAL
+    (14) condicion -> . MAYORQUE IGUAL
+    (15) condicion -> . MENORQUE IGUAL
+    (16) condicion -> . MAYORQUE
+    (17) condicion -> . MENORQUE
 
-    $end            reduce using rule 39 (lambda -> LAMBDA parametros DOSPUNTOS expr .)
-    DOSPUNTOS       reduce using rule 39 (lambda -> LAMBDA parametros DOSPUNTOS expr .)
-    COMA            reduce using rule 39 (lambda -> LAMBDA parametros DOSPUNTOS expr .)
+    $end            reduce using rule 44 (lambda -> LAMBDA parametros DOSPUNTOS expr .)
+    DOSPUNTOS       reduce using rule 44 (lambda -> LAMBDA parametros DOSPUNTOS expr .)
+    COMA            reduce using rule 44 (lambda -> LAMBDA parametros DOSPUNTOS expr .)
     MAS             shift and go to state 16
     MENOS           shift and go to state 17
+    IGUAL           shift and go to state 69
+    EXCLAMACION     shift and go to state 70
+    MAYORQUE        shift and go to state 71
+    MENORQUE        shift and go to state 72
 
+    condicion                      shift and go to state 68
 
 state 54
 
-    (34) parametros -> parametros COMA VARIABLE .
+    (45) lambda -> LAMBDA parametros DOSPUNTOS evaluarCondicion .
+    (22) evaluarCondicion -> evaluarCondicion . OPERADORLOGICO evaluarCondicion
+
+    $end            reduce using rule 45 (lambda -> LAMBDA parametros DOSPUNTOS evaluarCondicion .)
+    DOSPUNTOS       reduce using rule 45 (lambda -> LAMBDA parametros DOSPUNTOS evaluarCondicion .)
+    COMA            reduce using rule 45 (lambda -> LAMBDA parametros DOSPUNTOS evaluarCondicion .)
+    OPERADORLOGICO  shift and go to state 73
+
+
+state 55
+
+    (46) lambda -> LAMBDA parametros DOSPUNTOS INT . IF evaluarCondicion ELSE cualquierCosa
+
+    IF              shift and go to state 74
+
+
+state 56
+
+    (19) evaluarCondicion -> BOOLEANO .
+
+    OPERADORLOGICO  reduce using rule 19 (evaluarCondicion -> BOOLEANO .)
+    $end            reduce using rule 19 (evaluarCondicion -> BOOLEANO .)
+    DOSPUNTOS       reduce using rule 19 (evaluarCondicion -> BOOLEANO .)
+    COMA            reduce using rule 19 (evaluarCondicion -> BOOLEANO .)
+    ELSE            reduce using rule 19 (evaluarCondicion -> BOOLEANO .)
+
+
+state 57
+
+    (36) parametros -> parametros COMA VARIABLE .
     (1) assignVariable -> VARIABLE . IGUAL expr
     (2) assignVariable -> VARIABLE . IGUAL STRING
     (3) assignVariable -> VARIABLE . IGUAL lambda
     (4) assignVariable -> VARIABLE . IGUAL filter
     (5) assignVariable -> VARIABLE . IGUAL lista
 
-    DOSPUNTOS       reduce using rule 34 (parametros -> parametros COMA VARIABLE .)
-    COMA            reduce using rule 34 (parametros -> parametros COMA VARIABLE .)
+    DOSPUNTOS       reduce using rule 36 (parametros -> parametros COMA VARIABLE .)
+    COMA            reduce using rule 36 (parametros -> parametros COMA VARIABLE .)
     IGUAL           shift and go to state 3
 
 
-state 55
+state 58
 
-    (36) parametros -> parametros COMA assignVariable .
+    (38) parametros -> parametros COMA assignVariable .
 
-    DOSPUNTOS       reduce using rule 36 (parametros -> parametros COMA assignVariable .)
-    COMA            reduce using rule 36 (parametros -> parametros COMA assignVariable .)
+    DOSPUNTOS       reduce using rule 38 (parametros -> parametros COMA assignVariable .)
+    COMA            reduce using rule 38 (parametros -> parametros COMA assignVariable .)
 
 
-state 56
+state 59
 
-    (40) filter -> FILTER ABRIRPARENTESIS lambda COMA . VARIABLE CERRARPARENTESIS
-    (41) filter -> FILTER ABRIRPARENTESIS lambda COMA . lista CERRARPARENTESIS
+    (47) filter -> FILTER ABRIRPARENTESIS lambda COMA . VARIABLE CERRARPARENTESIS
+    (48) filter -> FILTER ABRIRPARENTESIS lambda COMA . lista CERRARPARENTESIS
     (6) lista -> . ABRIRCORCHETE lisString CERRARCORCHETE
     (7) lista -> . ABRIRCORCHETE lisInt CERRARCORCHETE
 
-    VARIABLE        shift and go to state 65
+    VARIABLE        shift and go to state 75
     ABRIRCORCHETE   shift and go to state 14
 
-    lista                          shift and go to state 66
+    lista                          shift and go to state 76
 
-state 57
+state 60
 
     (8) lisString -> lisString COMA STRING .
 
@@ -922,7 +1044,7 @@ state 57
     COMA            reduce using rule 8 (lisString -> lisString COMA STRING .)
 
 
-state 58
+state 61
 
     (10) lisInt -> lisInt COMA NUMERO .
 
@@ -930,114 +1052,447 @@ state 58
     COMA            reduce using rule 10 (lisInt -> lisInt COMA NUMERO .)
 
 
-state 59
-
-    (22) expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .
-
-    MAS             reduce using rule 22 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
-    MENOS           reduce using rule 22 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
-    $end            reduce using rule 22 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
-    DOSPUNTOS       reduce using rule 22 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
-    COMA            reduce using rule 22 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
-
-
-state 60
-
-    (24) expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .
-
-    MAS             reduce using rule 24 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
-    MENOS           reduce using rule 24 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
-    $end            reduce using rule 24 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
-    DOSPUNTOS       reduce using rule 24 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
-    COMA            reduce using rule 24 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
-
-
-state 61
-
-    (32) term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .
-
-    POR             reduce using rule 32 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
-    DIVIDIR         reduce using rule 32 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
-    MAS             reduce using rule 32 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
-    MENOS           reduce using rule 32 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
-    $end            reduce using rule 32 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
-    DOSPUNTOS       reduce using rule 32 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
-    COMA            reduce using rule 32 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
-    CERRARPARENTESIS reduce using rule 32 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
-
-
 state 62
 
-    (28) term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .
+    (24) expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .
 
-    POR             reduce using rule 28 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
-    DIVIDIR         reduce using rule 28 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
-    MAS             reduce using rule 28 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
-    MENOS           reduce using rule 28 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
-    $end            reduce using rule 28 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
-    DOSPUNTOS       reduce using rule 28 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
-    COMA            reduce using rule 28 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
-    CERRARPARENTESIS reduce using rule 28 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    MAS             reduce using rule 24 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
+    MENOS           reduce using rule 24 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
+    $end            reduce using rule 24 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
+    DOSPUNTOS       reduce using rule 24 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
+    COMA            reduce using rule 24 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
+    IGUAL           reduce using rule 24 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
+    EXCLAMACION     reduce using rule 24 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
+    MAYORQUE        reduce using rule 24 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
+    MENORQUE        reduce using rule 24 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
+    OPERADORLOGICO  reduce using rule 24 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
+    ELSE            reduce using rule 24 (expr -> ABRIRPARENTESIS expr MAS term CERRARPARENTESIS .)
 
 
 state 63
 
-    (33) term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .
+    (26) expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .
 
-    POR             reduce using rule 33 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
-    DIVIDIR         reduce using rule 33 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
-    MAS             reduce using rule 33 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
-    MENOS           reduce using rule 33 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
-    $end            reduce using rule 33 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
-    DOSPUNTOS       reduce using rule 33 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
-    COMA            reduce using rule 33 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
-    CERRARPARENTESIS reduce using rule 33 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    MAS             reduce using rule 26 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
+    MENOS           reduce using rule 26 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
+    $end            reduce using rule 26 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
+    DOSPUNTOS       reduce using rule 26 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
+    COMA            reduce using rule 26 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
+    IGUAL           reduce using rule 26 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
+    EXCLAMACION     reduce using rule 26 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
+    MAYORQUE        reduce using rule 26 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
+    MENORQUE        reduce using rule 26 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
+    OPERADORLOGICO  reduce using rule 26 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
+    ELSE            reduce using rule 26 (expr -> ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS .)
 
 
 state 64
 
-    (29) term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .
+    (34) term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .
 
-    POR             reduce using rule 29 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
-    DIVIDIR         reduce using rule 29 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
-    MAS             reduce using rule 29 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
-    MENOS           reduce using rule 29 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
-    $end            reduce using rule 29 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
-    DOSPUNTOS       reduce using rule 29 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
-    COMA            reduce using rule 29 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
-    CERRARPARENTESIS reduce using rule 29 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    POR             reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
+    DIVIDIR         reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
+    MAS             reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
+    MENOS           reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
+    $end            reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
+    DOSPUNTOS       reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
+    COMA            reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
+    IGUAL           reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
+    EXCLAMACION     reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
+    MAYORQUE        reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
+    MENORQUE        reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
+    OPERADORLOGICO  reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
+    ELSE            reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
+    CERRARPARENTESIS reduce using rule 34 (term -> ABRIRPARENTESIS term POR term CERRARPARENTESIS .)
 
 
 state 65
 
-    (40) filter -> FILTER ABRIRPARENTESIS lambda COMA VARIABLE . CERRARPARENTESIS
+    (30) term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .
 
-    CERRARPARENTESIS shift and go to state 67
+    POR             reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    DIVIDIR         reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    MAS             reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    MENOS           reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    $end            reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    DOSPUNTOS       reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    COMA            reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    IGUAL           reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    EXCLAMACION     reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    MAYORQUE        reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    MENORQUE        reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    OPERADORLOGICO  reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    ELSE            reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
+    CERRARPARENTESIS reduce using rule 30 (term -> ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS .)
 
 
 state 66
 
-    (41) filter -> FILTER ABRIRPARENTESIS lambda COMA lista . CERRARPARENTESIS
+    (35) term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .
 
-    CERRARPARENTESIS shift and go to state 68
+    POR             reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    DIVIDIR         reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    MAS             reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    MENOS           reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    $end            reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    DOSPUNTOS       reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    COMA            reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    IGUAL           reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    EXCLAMACION     reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    MAYORQUE        reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    MENORQUE        reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    OPERADORLOGICO  reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    ELSE            reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
+    CERRARPARENTESIS reduce using rule 35 (term -> ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS .)
 
 
 state 67
 
-    (40) filter -> FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS .
+    (31) term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .
 
-    $end            reduce using rule 40 (filter -> FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS .)
-    DOSPUNTOS       reduce using rule 40 (filter -> FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS .)
-    COMA            reduce using rule 40 (filter -> FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS .)
+    POR             reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    DIVIDIR         reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    MAS             reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    MENOS           reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    $end            reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    DOSPUNTOS       reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    COMA            reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    IGUAL           reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    EXCLAMACION     reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    MAYORQUE        reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    MENORQUE        reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    OPERADORLOGICO  reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    ELSE            reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
+    CERRARPARENTESIS reduce using rule 31 (term -> ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS .)
 
 
 state 68
 
-    (41) filter -> FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS .
+    (18) evaluarCondicion -> expr condicion . expr
+    (23) expr -> . expr MAS term
+    (24) expr -> . ABRIRPARENTESIS expr MAS term CERRARPARENTESIS
+    (25) expr -> . expr MENOS term
+    (26) expr -> . ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS
+    (27) expr -> . term
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
 
-    $end            reduce using rule 41 (filter -> FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS .)
-    DOSPUNTOS       reduce using rule 41 (filter -> FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS .)
-    COMA            reduce using rule 41 (filter -> FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS .)
+    ABRIRPARENTESIS shift and go to state 11
+    NUMERO          shift and go to state 15
+    VARIABLE        shift and go to state 4
+
+    expr                           shift and go to state 77
+    term                           shift and go to state 10
+
+state 69
+
+    (20) evaluarCondicion -> expr IGUAL . IGUAL BOOLEANO
+    (12) condicion -> IGUAL . IGUAL
+
+    IGUAL           shift and go to state 78
+
+
+state 70
+
+    (21) evaluarCondicion -> expr EXCLAMACION . IGUAL BOOLEANO
+    (13) condicion -> EXCLAMACION . IGUAL
+
+    IGUAL           shift and go to state 79
+
+
+state 71
+
+    (14) condicion -> MAYORQUE . IGUAL
+    (16) condicion -> MAYORQUE .
+
+    IGUAL           shift and go to state 80
+    ABRIRPARENTESIS reduce using rule 16 (condicion -> MAYORQUE .)
+    NUMERO          reduce using rule 16 (condicion -> MAYORQUE .)
+    VARIABLE        reduce using rule 16 (condicion -> MAYORQUE .)
+
+
+state 72
+
+    (15) condicion -> MENORQUE . IGUAL
+    (17) condicion -> MENORQUE .
+
+    IGUAL           shift and go to state 81
+    ABRIRPARENTESIS reduce using rule 17 (condicion -> MENORQUE .)
+    NUMERO          reduce using rule 17 (condicion -> MENORQUE .)
+    VARIABLE        reduce using rule 17 (condicion -> MENORQUE .)
+
+
+state 73
+
+    (22) evaluarCondicion -> evaluarCondicion OPERADORLOGICO . evaluarCondicion
+    (18) evaluarCondicion -> . expr condicion expr
+    (19) evaluarCondicion -> . BOOLEANO
+    (20) evaluarCondicion -> . expr IGUAL IGUAL BOOLEANO
+    (21) evaluarCondicion -> . expr EXCLAMACION IGUAL BOOLEANO
+    (22) evaluarCondicion -> . evaluarCondicion OPERADORLOGICO evaluarCondicion
+    (23) expr -> . expr MAS term
+    (24) expr -> . ABRIRPARENTESIS expr MAS term CERRARPARENTESIS
+    (25) expr -> . expr MENOS term
+    (26) expr -> . ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS
+    (27) expr -> . term
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+
+    BOOLEANO        shift and go to state 56
+    ABRIRPARENTESIS shift and go to state 11
+    NUMERO          shift and go to state 15
+    VARIABLE        shift and go to state 4
+
+    evaluarCondicion               shift and go to state 82
+    expr                           shift and go to state 83
+    term                           shift and go to state 10
+
+state 74
+
+    (46) lambda -> LAMBDA parametros DOSPUNTOS INT IF . evaluarCondicion ELSE cualquierCosa
+    (18) evaluarCondicion -> . expr condicion expr
+    (19) evaluarCondicion -> . BOOLEANO
+    (20) evaluarCondicion -> . expr IGUAL IGUAL BOOLEANO
+    (21) evaluarCondicion -> . expr EXCLAMACION IGUAL BOOLEANO
+    (22) evaluarCondicion -> . evaluarCondicion OPERADORLOGICO evaluarCondicion
+    (23) expr -> . expr MAS term
+    (24) expr -> . ABRIRPARENTESIS expr MAS term CERRARPARENTESIS
+    (25) expr -> . expr MENOS term
+    (26) expr -> . ABRIRPARENTESIS expr MENOS term CERRARPARENTESIS
+    (27) expr -> . term
+    (28) term -> . term POR term
+    (29) term -> . term DIVIDIR term
+    (30) term -> . ABRIRPARENTESIS term POR NUMERO CERRARPARENTESIS
+    (31) term -> . ABRIRPARENTESIS term DIVIDIR NUMERO CERRARPARENTESIS
+    (32) term -> . NUMERO
+    (33) term -> . VARIABLE
+    (34) term -> . ABRIRPARENTESIS term POR term CERRARPARENTESIS
+    (35) term -> . ABRIRPARENTESIS term DIVIDIR term CERRARPARENTESIS
+
+    BOOLEANO        shift and go to state 56
+    ABRIRPARENTESIS shift and go to state 11
+    NUMERO          shift and go to state 15
+    VARIABLE        shift and go to state 4
+
+    evaluarCondicion               shift and go to state 84
+    expr                           shift and go to state 83
+    term                           shift and go to state 10
+
+state 75
+
+    (47) filter -> FILTER ABRIRPARENTESIS lambda COMA VARIABLE . CERRARPARENTESIS
+
+    CERRARPARENTESIS shift and go to state 85
+
+
+state 76
+
+    (48) filter -> FILTER ABRIRPARENTESIS lambda COMA lista . CERRARPARENTESIS
+
+    CERRARPARENTESIS shift and go to state 86
+
+
+state 77
+
+    (18) evaluarCondicion -> expr condicion expr .
+    (23) expr -> expr . MAS term
+    (25) expr -> expr . MENOS term
+
+    OPERADORLOGICO  reduce using rule 18 (evaluarCondicion -> expr condicion expr .)
+    $end            reduce using rule 18 (evaluarCondicion -> expr condicion expr .)
+    DOSPUNTOS       reduce using rule 18 (evaluarCondicion -> expr condicion expr .)
+    COMA            reduce using rule 18 (evaluarCondicion -> expr condicion expr .)
+    ELSE            reduce using rule 18 (evaluarCondicion -> expr condicion expr .)
+    MAS             shift and go to state 16
+    MENOS           shift and go to state 17
+
+
+state 78
+
+    (20) evaluarCondicion -> expr IGUAL IGUAL . BOOLEANO
+    (12) condicion -> IGUAL IGUAL .
+
+    BOOLEANO        shift and go to state 87
+    ABRIRPARENTESIS reduce using rule 12 (condicion -> IGUAL IGUAL .)
+    NUMERO          reduce using rule 12 (condicion -> IGUAL IGUAL .)
+    VARIABLE        reduce using rule 12 (condicion -> IGUAL IGUAL .)
+
+
+state 79
+
+    (21) evaluarCondicion -> expr EXCLAMACION IGUAL . BOOLEANO
+    (13) condicion -> EXCLAMACION IGUAL .
+
+    BOOLEANO        shift and go to state 88
+    ABRIRPARENTESIS reduce using rule 13 (condicion -> EXCLAMACION IGUAL .)
+    NUMERO          reduce using rule 13 (condicion -> EXCLAMACION IGUAL .)
+    VARIABLE        reduce using rule 13 (condicion -> EXCLAMACION IGUAL .)
+
+
+state 80
+
+    (14) condicion -> MAYORQUE IGUAL .
+
+    ABRIRPARENTESIS reduce using rule 14 (condicion -> MAYORQUE IGUAL .)
+    NUMERO          reduce using rule 14 (condicion -> MAYORQUE IGUAL .)
+    VARIABLE        reduce using rule 14 (condicion -> MAYORQUE IGUAL .)
+
+
+state 81
+
+    (15) condicion -> MENORQUE IGUAL .
+
+    ABRIRPARENTESIS reduce using rule 15 (condicion -> MENORQUE IGUAL .)
+    NUMERO          reduce using rule 15 (condicion -> MENORQUE IGUAL .)
+    VARIABLE        reduce using rule 15 (condicion -> MENORQUE IGUAL .)
+
+
+state 82
+
+    (22) evaluarCondicion -> evaluarCondicion OPERADORLOGICO evaluarCondicion .
+    (22) evaluarCondicion -> evaluarCondicion . OPERADORLOGICO evaluarCondicion
+
+  ! shift/reduce conflict for OPERADORLOGICO resolved as shift
+    $end            reduce using rule 22 (evaluarCondicion -> evaluarCondicion OPERADORLOGICO evaluarCondicion .)
+    DOSPUNTOS       reduce using rule 22 (evaluarCondicion -> evaluarCondicion OPERADORLOGICO evaluarCondicion .)
+    COMA            reduce using rule 22 (evaluarCondicion -> evaluarCondicion OPERADORLOGICO evaluarCondicion .)
+    ELSE            reduce using rule 22 (evaluarCondicion -> evaluarCondicion OPERADORLOGICO evaluarCondicion .)
+    OPERADORLOGICO  shift and go to state 73
+
+  ! OPERADORLOGICO  [ reduce using rule 22 (evaluarCondicion -> evaluarCondicion OPERADORLOGICO evaluarCondicion .) ]
+
+
+state 83
+
+    (18) evaluarCondicion -> expr . condicion expr
+    (20) evaluarCondicion -> expr . IGUAL IGUAL BOOLEANO
+    (21) evaluarCondicion -> expr . EXCLAMACION IGUAL BOOLEANO
+    (23) expr -> expr . MAS term
+    (25) expr -> expr . MENOS term
+    (12) condicion -> . IGUAL IGUAL
+    (13) condicion -> . EXCLAMACION IGUAL
+    (14) condicion -> . MAYORQUE IGUAL
+    (15) condicion -> . MENORQUE IGUAL
+    (16) condicion -> . MAYORQUE
+    (17) condicion -> . MENORQUE
+
+    IGUAL           shift and go to state 69
+    EXCLAMACION     shift and go to state 70
+    MAS             shift and go to state 16
+    MENOS           shift and go to state 17
+    MAYORQUE        shift and go to state 71
+    MENORQUE        shift and go to state 72
+
+    condicion                      shift and go to state 68
+
+state 84
+
+    (46) lambda -> LAMBDA parametros DOSPUNTOS INT IF evaluarCondicion . ELSE cualquierCosa
+    (22) evaluarCondicion -> evaluarCondicion . OPERADORLOGICO evaluarCondicion
+
+    ELSE            shift and go to state 89
+    OPERADORLOGICO  shift and go to state 73
+
+
+state 85
+
+    (47) filter -> FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS .
+
+    $end            reduce using rule 47 (filter -> FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS .)
+    DOSPUNTOS       reduce using rule 47 (filter -> FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS .)
+    COMA            reduce using rule 47 (filter -> FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS .)
+
+
+state 86
+
+    (48) filter -> FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS .
+
+    $end            reduce using rule 48 (filter -> FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS .)
+    DOSPUNTOS       reduce using rule 48 (filter -> FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS .)
+    COMA            reduce using rule 48 (filter -> FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS .)
+
+
+state 87
+
+    (20) evaluarCondicion -> expr IGUAL IGUAL BOOLEANO .
+
+    OPERADORLOGICO  reduce using rule 20 (evaluarCondicion -> expr IGUAL IGUAL BOOLEANO .)
+    $end            reduce using rule 20 (evaluarCondicion -> expr IGUAL IGUAL BOOLEANO .)
+    DOSPUNTOS       reduce using rule 20 (evaluarCondicion -> expr IGUAL IGUAL BOOLEANO .)
+    COMA            reduce using rule 20 (evaluarCondicion -> expr IGUAL IGUAL BOOLEANO .)
+    ELSE            reduce using rule 20 (evaluarCondicion -> expr IGUAL IGUAL BOOLEANO .)
+
+
+state 88
+
+    (21) evaluarCondicion -> expr EXCLAMACION IGUAL BOOLEANO .
+
+    OPERADORLOGICO  reduce using rule 21 (evaluarCondicion -> expr EXCLAMACION IGUAL BOOLEANO .)
+    $end            reduce using rule 21 (evaluarCondicion -> expr EXCLAMACION IGUAL BOOLEANO .)
+    DOSPUNTOS       reduce using rule 21 (evaluarCondicion -> expr EXCLAMACION IGUAL BOOLEANO .)
+    COMA            reduce using rule 21 (evaluarCondicion -> expr EXCLAMACION IGUAL BOOLEANO .)
+    ELSE            reduce using rule 21 (evaluarCondicion -> expr EXCLAMACION IGUAL BOOLEANO .)
+
+
+state 89
+
+    (46) lambda -> LAMBDA parametros DOSPUNTOS INT IF evaluarCondicion ELSE . cualquierCosa
+    (41) cualquierCosa -> . STRING
+    (42) cualquierCosa -> . NUMERO
+    (43) cualquierCosa -> . VARIABLE
+
+    STRING          shift and go to state 91
+    NUMERO          shift and go to state 92
+    VARIABLE        shift and go to state 93
+
+    cualquierCosa                  shift and go to state 90
+
+state 90
+
+    (46) lambda -> LAMBDA parametros DOSPUNTOS INT IF evaluarCondicion ELSE cualquierCosa .
+
+    $end            reduce using rule 46 (lambda -> LAMBDA parametros DOSPUNTOS INT IF evaluarCondicion ELSE cualquierCosa .)
+    DOSPUNTOS       reduce using rule 46 (lambda -> LAMBDA parametros DOSPUNTOS INT IF evaluarCondicion ELSE cualquierCosa .)
+    COMA            reduce using rule 46 (lambda -> LAMBDA parametros DOSPUNTOS INT IF evaluarCondicion ELSE cualquierCosa .)
+
+
+state 91
+
+    (41) cualquierCosa -> STRING .
+
+    $end            reduce using rule 41 (cualquierCosa -> STRING .)
+    DOSPUNTOS       reduce using rule 41 (cualquierCosa -> STRING .)
+    COMA            reduce using rule 41 (cualquierCosa -> STRING .)
+
+
+state 92
+
+    (42) cualquierCosa -> NUMERO .
+
+    $end            reduce using rule 42 (cualquierCosa -> NUMERO .)
+    DOSPUNTOS       reduce using rule 42 (cualquierCosa -> NUMERO .)
+    COMA            reduce using rule 42 (cualquierCosa -> NUMERO .)
+
+
+state 93
+
+    (43) cualquierCosa -> VARIABLE .
+
+    $end            reduce using rule 43 (cualquierCosa -> VARIABLE .)
+    DOSPUNTOS       reduce using rule 43 (cualquierCosa -> VARIABLE .)
+    COMA            reduce using rule 43 (cualquierCosa -> VARIABLE .)
 
 WARNING: 
 WARNING: Conflicts:
@@ -1052,3 +1507,4 @@ WARNING: shift/reduce conflict for CERRARPARENTESIS in state 50 resolved as shif
 WARNING: shift/reduce conflict for POR in state 51 resolved as shift
 WARNING: shift/reduce conflict for DIVIDIR in state 51 resolved as shift
 WARNING: shift/reduce conflict for CERRARPARENTESIS in state 52 resolved as shift
+WARNING: shift/reduce conflict for OPERADORLOGICO in state 82 resolved as shift

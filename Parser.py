@@ -34,6 +34,8 @@ def p_condicion(p):
 def p_evaluarCondicion(p):
     '''evaluarCondicion : expr condicion expr
                         | BOOLEANO
+                        | expr IGUAL IGUAL BOOLEANO
+                        | expr EXCLAMACION IGUAL BOOLEANO
                         | evaluarCondicion OPERADORLOGICO evaluarCondicion'''
 
 def p_expr(p):
@@ -59,14 +61,27 @@ def p_parametros(p):
                 | parametros COMA assignVariable
                 | assignVariable
                 | '''
+def p_cualquierCosa(p):
+    '''cualquierCosa : STRING
+                    | NUMERO
+                    | VARIABLE'''
 
 def p_lambda(p):
-    '''lambda : LAMBDA parametros DOSPUNTOS expr'''
+    '''lambda : LAMBDA parametros DOSPUNTOS expr
+            | LAMBDA parametros DOSPUNTOS evaluarCondicion
+            | LAMBDA parametros DOSPUNTOS INT IF evaluarCondicion ELSE cualquierCosa'''
 
 def p_filter(p):
     '''filter : FILTER ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS
             | FILTER ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS'''
 
+def p_reduce(p):
+    '''reduce : REDUCE ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS
+            | REDUCE ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS'''
+
+def p_mapa(p):
+    '''mapa : MAPA ABRIRPARENTESIS lambda COMA VARIABLE CERRARPARENTESIS
+            | MAPA ABRIRPARENTESIS lambda COMA lista CERRARPARENTESIS'''
 
 yacc.yacc()
 
