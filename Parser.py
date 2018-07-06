@@ -8,6 +8,7 @@ def p_assignVariable(p):
                     | VARIABLE IGUAL lambda
                     | VARIABLE IGUAL filter
                     | VARIABLE IGUAL lista'''
+                    
 def p_lista(p):
     '''lista : ABRIRCORCHETE lisString CERRARCORCHETE
             | ABRIRCORCHETE lisInt CERRARCORCHETE'''
@@ -57,10 +58,11 @@ def p_term(p):
 
 def p_parametros(p):
     '''parametros : parametros COMA VARIABLE
-                | VARIABLE
-                | parametros COMA assignVariable
-                | assignVariable
-                | '''
+                    | VARIABLE
+                    | parametros COMA assignVariable
+                    | assignVariable
+                    | '''
+
 def p_cualquierCosa(p):
     '''cualquierCosa : STRING
                     | NUMERO
